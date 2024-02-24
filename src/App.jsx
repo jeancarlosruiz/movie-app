@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { MovieList } from './components';
 import { Input } from '@nextui-org/react';
 import data from '../data.json';
-import { uniqueID } from '../helper/uniqueId';
+import { uniqueID } from '../helper/uniqueID';
 
 const initialState = () => {
   const storedMovies = localStorage.getItem('moviesList');
@@ -37,10 +37,10 @@ function App() {
 
   const onAddMovie = (title, description, category) => {
     const newMovie = {
-      id: uniqueID(),
-      title,
-      description,
-      category,
+      Id: uniqueID(),
+      Title: title,
+      Description: description,
+      Category: category,
     };
 
     const prevMovies = JSON.parse(localStorage.getItem('moviesList'));
@@ -49,13 +49,17 @@ function App() {
     setMovies(newMoviesList);
   };
 
-  const onDeleteMovie = () => {
-    console.log('Eliminando Movie');
+  const onDeleteMovie = (id) => {
+    const movieDeleted = movies.filter((movie) => movie.Id !== id);
+
+    setMovies(movieDeleted);
   };
 
   return (
     <>
-      <h1>Movie App</h1>
+      <header className='bg-blue-500 py-4'>
+        <h1 className='text-center'>Movie App</h1>
+      </header>
       <div className='flex w-full flex-wrap md:flex-nowrap gap-4'>
         <Input
           type='text'
@@ -63,6 +67,7 @@ function App() {
           placeholder='Enter your email'
           value={searchTerm}
           onChange={(e) => handleSearchTerm(e.target.value)}
+          className='border-2 border-blue-500 rounded-lg p-2'
         />
       </div>
       <MovieList
