@@ -3,18 +3,29 @@ import { Card, CardHeader, CardBody, Button } from '@nextui-org/react';
 function Movie({ movie, onDeleteMovie }) {
   return (
     <Card className='py-4'>
-      <CardHeader className='pb-0 pt-2 px-4 flex-col items-start'>
+      <CardHeader
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+        className='pb-0 pt-2 px-4'
+      >
         <h2 className='font-bold text-large'>{movie.Title}</h2>
         <Button
           isIconOnly
           color='danger'
           aria-label='Like'
           onClick={() => onDeleteMovie(movie.Id)}
+          style={{
+            padding: '0.5rem',
+            borderRadius: '50%',
+          }}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            width='24'
-            height='24'
+            width='16'
+            height='16'
             viewBox='0 0 24 24'
             fill='none'
             stroke='currentColor'

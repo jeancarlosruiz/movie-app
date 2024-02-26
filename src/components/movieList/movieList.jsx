@@ -44,22 +44,29 @@ function MovieList({ movies, onAddMovie, onDeleteMovie }) {
 
   return (
     <>
-      <div className='flex flex-wrap gap-3'>
-        <Button
-          variant='flat'
-          color='warning'
-          onPress={() => handleOpen()}
-          className='capitalize'
-        >
+      <div
+        style={{
+          marginBlock: '2rem',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Button variant='flat' color='warning' onPress={() => handleOpen()}>
           Add a new movie
         </Button>
       </div>
-      <section className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+      <section
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+          gap: '1rem',
+          paddingInline: '1rem',
+        }}
+      >
         {movies.map((movie) => (
           <Movie key={movie.Id} movie={movie} onDeleteMovie={onDeleteMovie} />
         ))}
       </section>
-
       <Modal
         backdrop='opaque'
         isOpen={isOpen}

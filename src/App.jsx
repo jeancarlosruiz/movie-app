@@ -58,16 +58,19 @@ function App() {
   return (
     <>
       <header className='bg-blue-500 py-4'>
-        <h1 className='text-center'>Movie App</h1>
+        {/* <h1 className='text-center text-xl text-slate-200'>Movie App</h1> */}
+        <h1 className='text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-slate-200'>
+          Movie App
+        </h1>
       </header>
-      <div className='flex w-full flex-wrap md:flex-nowrap gap-4'>
+      <div className='px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12'>
         <Input
           type='text'
           label='Movie Filter'
           placeholder='Enter your email'
           value={searchTerm}
-          onChange={(e) => handleSearchTerm(e.target.value)}
-          className='border-2 border-blue-500 rounded-lg p-2'
+          onChange={(e) => debounce(handleSearchTerm(e.target.value), 750)}
+          className='w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 max-w-lg mx-auto'
         />
       </div>
       <MovieList
